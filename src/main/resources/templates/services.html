@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Luxe &mdash; Services</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Services page" />
+	<meta name="keywords" content="hotel, responsive design" />
+	<meta name="author" content="FREEHTML5.CO" />
+
+	<!-- Place favicon.ico in the root directory -->
+	<link th:href="@{/favicon.ico}" rel="shortcut icon">
+
+	<!-- Stylesheets -->
+	<link th:href="@{/css/superfish.css}" rel="stylesheet">
+	<link th:href="@{/css/bootstrap-datepicker.min.css}" rel="stylesheet">
+	<link th:href="@{/css/cs-select.css}" rel="stylesheet">
+	<link th:href="@{/css/cs-skin-border.css}" rel="stylesheet">
+	<link th:href="@{/css/themify-icons.css}" rel="stylesheet">
+	<link th:href="@{/css/flaticon.css}" rel="stylesheet">
+	<link th:href="@{/css/icomoon.css}" rel="stylesheet">
+	<link th:href="@{/css/flexslider.css}" rel="stylesheet">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+
+	<!-- Modernizr JS -->
+	<script th:src="@{/js/modernizr-2.6.2.min.js}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script th:src="@{/js/respond.min.js}"></script>
+	<![endif]-->
+</head>
+<body>
+<div id="fh5co-wrapper">
+	<div id="fh5co-page">
+		<div id="fh5co-header">
+			<header id="fh5co-header-section">
+				<div class="container">
+					<div class="nav-header">
+						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+						<h1 id="fh5co-logo"><a th:href="@{/}">Luxe</a></h1>
+						<nav id="fh5co-menu-wrap" role="navigation">
+							<ul class="sf-menu" id="fh5co-primary-menu">
+								<li><a th:href="@{/}">Home</a></li>
+								<li>
+									<a th:href="@{/hotel}" class="fh5co-sub-ddown">Hotel</a>
+									<ul class="fh5co-sub-menu">
+										<li><a href="#">Luxe Hotel</a></li>
+										<li><a href="#">Deluxe Hotel</a></li>
+										<li>
+											<a href="#" class="fh5co-sub-ddown">King Hotel</a>
+											<ul class="fh5co-sub-menu">
+												<li><a href="#">Option 1</a></li>
+												<li><a href="#">Option 2</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Five Star Hotel</a></li>
+									</ul>
+								</li>
+								<li><a class="active" th:href="@{/services}">Services</a></li>
+								<li><a th:href="@{/blog}">Blog</a></li>
+								<li><a th:href="@{/contact}">Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+		</div>
+		<!-- end:fh5co-header -->
+		<div class="fh5co-parallax" th:style="'background-image: url(' + @{/images/slider1.jpg} + ');'" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center fh5co-table">
+						<div class="fh5co-intro fh5co-table-cell">
+							<h1 class="text-center">We Offer Services</h1>
+							<p>Made with love by the fine folks at <a href="http://freehtml5.co">FreeHTML5.co</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Services Section -->
+		<div id="fh5co-services-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4" th:each="service : ${services}">
+						<div class="services">
+							<span><i th:class="${service.icon}"></i></span>
+							<div class="desc">
+								<h3 th:text="${service.title}">Accessible Location</h3>
+								<p th:text="${service.description}">Service description here...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="fh5co-bg-color">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="copyright">
+							<p><small>&copy; 2016 Free HTML5 Template. <br> All Rights Reserved. <br>
+								Designed by <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a></small></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</div>
+
+<!-- Javascripts -->
+<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/js/hoverIntent.js}"></script>
+<script th:src="@{/js/superfish.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.waypoints.min.js}"></script>
+<script th:src="@{/js/jquery.countTo.js}"></script>
+<script th:src="@{/js/jquery.stellar.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/classie.js}"></script>
+<script th:src="@{/js/selectFx.js}"></script>
+<script th:src="@{/js/jquery.flexslider-min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+</body>
+</html>

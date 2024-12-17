@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Lista Hoteluri</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+
+<section>
+	<h1>Lista Hoteluri</h1>
+	<table border="1">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nume</th>
+			<th>Adresa</th>
+			<th>Telefon</th>
+			<th>Recenzii</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- Iterăm peste lista "hotels" primită de la controller -->
+		<tr th:each="hotel : ${hotels}">
+			<td th:text="${hotel.idHotel}"></td>
+			<td th:text="${hotel.numeHotel}"></td>
+			<td th:text="${hotel.adresaHotel}"></td>
+			<td th:text="${hotel.telefonHotel}"></td>
+			<td th:text="${hotel.recenziiHotel}"></td>
+		</tr>
+		</tbody>
+	</table>
+</section>
+
+</body>
+</html>
