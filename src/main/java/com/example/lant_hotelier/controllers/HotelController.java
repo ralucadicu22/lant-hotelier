@@ -15,15 +15,11 @@ public class HotelController {
     @Autowired
     private HotelService hotelService;
 
-    @GetMapping("/hotel")    // URL-ul pe care îl vei apela din meniu
+    @GetMapping("/hotel")
     public String showHotels(Model model) {
-        // 1. Ia lista de hoteluri din service
         List<Hotel> hoteluri = hotelService.getAllHotels();
-
-        // 2. Pune lista în model, ca să fie accesibilă în Thymeleaf
         model.addAttribute("hotels", hoteluri);
         System.out.println(hoteluri);
-        // 3. Returnează numele fișierului HTML (hotel.html) din /templates
         return "hotel";
     }
 }

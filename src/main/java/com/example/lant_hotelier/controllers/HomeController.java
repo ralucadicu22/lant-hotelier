@@ -19,7 +19,7 @@ public class HomeController {
         List<Hotel> hotels = hotelService.getAllHotels();
         model.addAttribute("hotels", hotels);
         System.out.println(hotels);
-        return "index"; // Numele șablonului Thymeleaf
+        return "index";
 
     }
 

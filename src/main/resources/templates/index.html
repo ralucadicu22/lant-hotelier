@@ -14,10 +14,9 @@
 	<meta name="keywords" content="hotel, responsive design" />
 	<meta name="author" content="FREEHTML5.CO" />
 
-	<!-- Place favicon.ico in the root directory -->
 	<link th:href="@{/favicon.ico}" rel="shortcut icon">
 
-	<!-- Stylesheets -->
+
 	<link th:href="@{/css/owl.carousel.css}" rel="stylesheet">
 	<link th:href="@{/css/owl.theme.default.min.css}" rel="stylesheet">
 	<link th:href="@{/css/superfish.css}" rel="stylesheet">
@@ -27,7 +26,6 @@
 	<link th:href="@{/css/themify-icons.css}" rel="stylesheet">
 	<link th:href="@{/css/flaticon.css}" rel="stylesheet">
 	<link th:href="@{/css/icomoon.css}" rel="stylesheet">
-	<link th:href="@{/css/flexslider.css}" rel="stylesheet">
 	<link th:href="@{/css/style.css}" rel="stylesheet">
 	<!-- Modernizr JS -->
 	<script th:src="@{/js/modernizr-2.6.2.min.js}"></script>
@@ -49,19 +47,15 @@
 							<ul class="sf-menu" id="fh5co-primary-menu">
 								<li><a class="active" th:href="@{/}">Home</a></li>
 								<li>
-									<!-- Dropdown pentru Hoteluri -->
 									<a th:href="@{/hotel}" class="fh5co-sub-ddown">Hotel</a>
 									<ul class="fh5co-sub-menu">
-										<!-- Iterăm prin lista de hoteluri din model -->
 										<li th:if="${hotels != null and hotels.size() > 0}" th:each="hotel : ${hotels}">
-											<!-- Afișăm numele hotelului (presupun că entitatea are un câmp numeHotel) -->
 											<a th:href="@{/hotel/{id}(id=${hotel.idHotel})}" th:text="${hotel.numeHotel}">Hotel Name</a>
 										</li>
-										<!-- Mesaj fallback dacă lista de hoteluri este goală -->
 										<li th:if="${hotels == null or hotels.size() == 0}">
 											<a href="#">No Hotels Available</a>
 										</li>
-										</ul>
+									</ul>
 								</li>
 								<li><a th:href="@{/services}">Services</a></li>
 								<li><a th:href="@{/blog}">Blog</a></li>
@@ -71,45 +65,87 @@
 					</div>
 				</div>
 			</header>
-		</div>
-		<!-- end:fh5co-header -->
+		</div></div>
 
-		<aside id="fh5co-hero" class="js-fullheight">
-			<div class="flexslider js-fullheight">
-				<ul class="slides">
-					<li th:style="'background-image: url(' + @{/images/hero1.jpg} + ');'">
-						<div class="overlay-gradient"></div>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-12 text-center slider-text">
-									<div class="slider-text-inner js-fullheight">
-										<div class="desc">
-											<h2>Luxe Hotel</h2>
-											<p>A Best Place To Enjoy Your Life</p>
-											<p><a href="#" class="btn btn-primary btn-lg">Book Now</a></p>
-											<!-- Search Form -->
-											<div class="search-form">
-												<select class="form-control">
-													<option>Select Hotel</option>
-													<option>Hotel 1</option>
-													<option>Hotel 2</option>
-													<option>Hotel 3</option>
-												</select>
-												<input type="date" class="form-control" placeholder="Check In">
-												<input type="date" class="form-control" placeholder="Check Out">
-												<button class="btn btn-primary">Check Availability</button>
-											</div>
-										</div>
-									</div>
-								</div>
+
+	<section id="fh5co-hero" class="js-fullheight">
+		<div class="owl-carousel hero-carousel">
+			<div class="item" style="background-image: url('/images/Sheraton-Grand.webp'); height: 100vh; background-size: cover; background-position: center;">
+				<div class="overlay-gradient"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center slider-text">
+							<div class="slider-text-inner">
+								<h2>Discover Serenity</h2>
+								<h3>Experience comfort like never before</h3>
+								<p><a href="#" class="btn btn-primary">Book Now</a></p>
 							</div>
 						</div>
-					</li>
-				</ul>
+					</div>
+				</div>
 			</div>
-		</aside>
+			<div class="item" style="background-image: url('/images/hotel1.webp'); height: 100vh; background-size: cover; background-position: center;">
+				<div class="overlay-gradient"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center slider-text">
+							<div class="slider-text-inner">
+								<h2>Luxury Awaits</h2>
+								<h3>Your dream destination is here</h3>
+								<p><a href="#" class="btn btn-primary">Book Now</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item" style="background-image: url('/images/hol1.webp'); height: 100vh; background-size: cover; background-position: center;">
+				<div class="overlay-gradient"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center slider-text">
+							<div class="slider-text-inner">
+								<h3>A Best Place To Enjoy Your Life</h3>
+								<p><a href="#" class="btn btn-primary">Book Now</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<div id="featured-hotel" class="fh5co-bg-color">
+		<div class="booking-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="booking-field">
+							<select class="form-control" name="hotel">
+								<option value="">Select Hotel</option>
+								<option th:each="hotel : ${hotels}" th:value="${hotel.idHotel}" th:text="${hotel.numeHotel}">
+									Hotel Name
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="booking-field">
+							<input type="date" class="form-control" placeholder="Check In">
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="booking-field">
+							<input type="date" class="form-control" placeholder="Check Out">
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="booking-field">
+							<button class="btn btn-primary btn-block">Check Availability</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div id="featured-hotel" class="fh5co-bg-color">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -119,7 +155,6 @@
 					</div>
 				</div>
 				<div class="owl-carousel">
-					<!-- Iterăm hotelurile -->
 					<div class="item" th:each="hotel : ${hotels}">
 						<div class="feature-full-1col">
 							<div class="image" th:style="'background-image: url(' + @{/images/} + ${hotel.image} + ');'"></div>
@@ -133,76 +168,50 @@
 				</div>
 			</div>
 		</div>
-		<section id="hotel-facilities" class="fh5co-bg-color">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<h2 class="section-title">HOTEL FACILITIES</h2>
-					</div>
-				</div>
-				<div class="row text-center">
-					<!-- Restaurant -->
-					<div class="col-md-2 col-sm-4 facility">
-                <span class="icon">
-                    <i class="ti-restaurant"></i>
-                </span>
-						<h3>RESTAURANT</h3>
-					</div>
-					<!-- Bar -->
-					<div class="col-md-2 col-sm-4 facility">
-                <span class="icon">
-                    <i class="ti-cocktail"></i>
-                </span>
-						<h3>BAR</h3>
-					</div>
-					<!-- Pick-Up -->
-					<div class="col-md-2 col-sm-4 facility">
-                <span class="icon">
-                    <i class="ti-car"></i>
-                </span>
-						<h3>PICK-UP</h3>
-					</div>
-					<!-- Swimming Pool -->
-					<div class="col-md-2 col-sm-4 facility">
-                <span class="icon">
-                    <i class="ti-splash"></i>
-                </span>
-						<h3>SWIMMING POOL</h3>
-					</div>
-					<!-- SPA -->
-					<div class="col-md-2 col-sm-4 facility">
-                <span class="icon">
-                    <i class="ti-face-smile"></i>
-                </span>
-						<h3>SPA</h3>
-					</div>
-					<!-- Gym -->
-					<div class="col-md-2 col-sm-4 facility">
-                <span class="icon">
-                    <i class="ti-gym"></i>
-                </span>
-						<h3>GYM</h3>
-					</div>
+	<section id="hotel-facilities" class="fh5co-bg-color">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-12">
+					<h2 class="section-title">HOTEL FACILITIES</h2>
 				</div>
 			</div>
-		</section>
-		<!-- Footer -->
-		<footer id="footer" class="fh5co-bg-color">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="copyright">
-							<p><small>&copy; 2016 Free HTML5 Template. <br> All Rights Reserved. <br>
-								Designed by <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a></small></p>
-						</div>
-					</div>
+
+			<div class="row text-center facilities-row">
+
+				<div class="col-md-2 col-sm-4 facility">
+					<img src="images/svg/restaurant23.svg" alt="Restaurant" class="facility-icon">
+					<h3>RESTAURANT</h3>
+				</div>
+
+				<div class="col-md-2 col-sm-4 facility">
+					<img src="images/svg/cup74.svg" alt="Bar" class="facility-icon">
+					<h3>BAR</h3>
+				</div>
+
+				<div class="col-md-2 col-sm-4 facility">
+					<img src="images/svg/car72.svg" alt="Pick-Up" class="facility-icon">
+					<h3>PICK-UP</h3>
+				</div>
+
+				<div class="col-md-2 col-sm-4 facility">
+					<img src="images/svg/swimming21.svg" alt="Swimming Pool" class="facility-icon">
+					<h3>SWIMMING POOL</h3>
+				</div>
+
+				<div class="col-md-2 col-sm-4 facility">
+					<img src="images/svg/massage2.svg" alt="Spa" class="facility-icon">
+					<h3>SPA</h3>
+				</div>
+				<div class="col-md-2 col-sm-4 facility">
+					<img src="images/svg/bicycle14.svg" alt="Gym" class="facility-icon">
+					<h3>GYM</h3>
 				</div>
 			</div>
-		</footer>
-	</div>
+		</div>
+	</section>
+
 </div>
 
-<!-- Javascripts -->
 <script th:src="@{/js/jquery-2.1.4.min.js}"></script>
 <script th:src="@{/js/hoverIntent.js}"></script>
 <script th:src="@{/js/superfish.js}"></script>
@@ -211,45 +220,35 @@
 <script th:src="@{/js/jquery.countTo.js}"></script>
 <script th:src="@{/js/jquery.stellar.min.js}"></script>
 <script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
-<!-- Owl Carousel CSS -->
+
 <link th:href="@{/css/owl.carousel.css}" rel="stylesheet">
 <link th:href="@{/css/owl.theme.default.min.css}" rel="stylesheet">
 
-<!-- Owl Carousel JS -->
 <script th:src="@{/js/owl.carousel.min.js}"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
-        $(".owl-carousel").owlCarousel({
-            loop: true, // Permite rularea infinită
-            margin: 20, // Distanța dintre elemente
-            nav: true, // Activează săgețile de navigare
-            dots: true, // Activează paginarea
-            items: 1, // Afișează un singur element
-            responsive: {
-                0: {
-                    items: 1 // Pe ecrane mici afișează 1 element
-                },
-                600: {
-                    items: 1 // Pe ecrane medii afișează 1 element
-                },
-                1000: {
-                    items: 1 // Pe ecrane mari afișează 1 element
-                }
-            }
+	$(document).ready(function() {
+        // Owl Carousel pentru Hero Slider
+        $(".hero-carousel").owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            dots: true,
+            items: 1,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            navText: ["<i class='icon-chevron-left'></i>", "<i class='icon-chevron-right'></i>"]
+        });
+
+        // Owl Carousel pentru Featured Hotels
+        $(".owl-carousel:not(.hero-carousel)").owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            items: 1
         });
     });
 </script>
 
-<script>
-	$(document).ready(function () {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            slideshow: true,
-            controlNav: false,
-            directionNav: true,
-            animationSpeed: 600,
-            slideshowSpeed: 4000,
-            smoothHeight: true
-        });
-    });
-</script>
+</body>
+</html>

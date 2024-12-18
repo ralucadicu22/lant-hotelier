@@ -9241,25 +9241,50 @@ height: 100vh;
 }
 
 .slider-text {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100%;
-color: #fff;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
 }
 
-.slider-text h2 {
-font-size: 50px;
-font-weight: bold;
-margin-bottom: 20px;
+.slider-text-inner {
+    margin: 0;
+    padding: 20px;
+}
+.slider-text-inner h2 {
+    font-size: 25rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
 }
 
-.slider-text p {
-font-size: 20px;
-margin-bottom: 20px;
+.slider-text-inner h3 {
+    font-size: 10rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 30px;
 }
 
+.slider-text-inner p a {
+    font-size: 3rem;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: #ff6600;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.slider-text-inner p a:hover {
+    background-color: #ff4500;
+    color: #fff;
+}
 .search-form {
 display: flex;
 justify-content: center;
@@ -9309,13 +9334,12 @@ background-color: #ff3b3b;
     margin-bottom: 30px;
 }
 
-.facility .icon {
+.facility-icon {
+    width: 50px;
+    height: 50px;
     display: inline-block;
-    font-size: 40px;
-    color: #ff6b6b;
     margin-bottom: 10px;
 }
-
 .facility h3 {
     font-size: 16px;
     text-transform: uppercase;
@@ -9324,5 +9348,70 @@ background-color: #ff3b3b;
 }
 
 .facility:hover .icon {
-    color: #ff3b3b; /* Schimbă culoarea la hover */
+    color: #ff3b3b;
+}
+.hero-carousel .item {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    color: white;
+    padding-bottom: 15%;
+}
+
+.hero-carousel .slider-text-inner {
+    z-index: 2;
+}
+
+.hero-carousel .slider-text-inner h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-carousel .slider-text-inner h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-carousel .slider-text-inner .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background: orange;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.booking-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 102, 0, 0.9);
+    padding: 20px 0;
+    z-index: 5;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.booking-section .form-control {
+    height: 45px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.booking-section .btn {
+    background-color: #333;
+    color: #fff;
+    height: 45px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+.booking-section .btn:hover {
+    background-color: #555;
 }
