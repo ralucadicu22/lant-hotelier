@@ -44,25 +44,20 @@
 						<h1 id="fh5co-logo"><a th:href="@{/}">Luxe</a></h1>
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li><a th:href="@{/}">Home</a></li>
+								<li><a class="active" th:href="@{/}">Home</a></li>
 								<li>
 									<a th:href="@{/hotel}" class="fh5co-sub-ddown">Hotel</a>
 									<ul class="fh5co-sub-menu">
-										<li><a href="#">Luxe Hotel</a></li>
-										<li><a href="#">Deluxe Hotel</a></li>
-										<li>
-											<a href="#" class="fh5co-sub-ddown">King Hotel</a>
-											<ul class="fh5co-sub-menu">
-												<li><a href="#">Option 1</a></li>
-												<li><a href="#">Option 2</a></li>
-											</ul>
+										<li th:if="${hotels != null and hotels.size() > 0}" th:each="hotel : ${hotels}">
+											<a th:href="@{/hotel/{id}(id=${hotel.idHotel})}" th:text="${hotel.numeHotel}">Hotel Name</a>
 										</li>
-										<li><a href="#">Five Star Hotel</a></li>
+										<li th:if="${hotels == null or hotels.size() == 0}">
+											<a href="#">No Hotels Available</a>
+										</li>
 									</ul>
 								</li>
-								<li><a class="active" th:href="@{/services}">Services</a></li>
-								<li><a th:href="@{/blog}">Blog</a></li>
-								<li><a th:href="@{/contact}">Contact</a></li>
+								<li><a th:href="@{/services}">Services</a></li>
+								<li><a class="active" th:href="@{/contact}">Contact</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -77,7 +72,7 @@
 					<div class="col-md-12 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell">
 							<h1 class="text-center">We Offer Services</h1>
-							<p>Made with love by the fine folks at <a href="http://freehtml5.co">FreeHTML5.co</a></p>
+							<p>Made with love </p>
 						</div>
 					</div>
 				</div>
@@ -88,12 +83,15 @@
 		<div id="fh5co-services-section">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4" th:each="service : ${services}">
+					<!-- Iterare prin lista de facilități din modelul Thymeleaf -->
+					<div class="col-md-4" th:each="facilitate : ${facilitati}">
 						<div class="services">
-							<span><i th:class="${service.icon}"></i></span>
+							<span><i class="ti-check"></i></span> <!-- Iconă generică -->
 							<div class="desc">
-								<h3 th:text="${service.title}">Accessible Location</h3>
-								<p th:text="${service.description}">Service description here...</p>
+								<!-- Afișează numele facilității -->
+								<h3 th:text="${facilitate.numeFacilitate}">Facility Name</h3>
+								<!-- Afișează descrierea facilității -->
+								<p th:text="${facilitate.descriereFacilitate}">Facility Description</p>
 							</div>
 						</div>
 					</div>
@@ -101,21 +99,7 @@
 			</div>
 		</div>
 
-		<!-- Footer -->
-		<footer id="footer" class="fh5co-bg-color">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="copyright">
-							<p><small>&copy; 2016 Free HTML5 Template. <br> All Rights Reserved. <br>
-								Designed by <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a></small></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
-</div>
+
 
 <!-- Javascripts -->
 <script th:src="@{/js/jquery-2.1.4.min.js}"></script>

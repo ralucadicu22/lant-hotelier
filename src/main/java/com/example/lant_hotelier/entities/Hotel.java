@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "tblHotel")   // dacă tabela în DB se numește tblHotel
+@Table(name = "tblHotel")
 public class Hotel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // sau alta strategie
-    private Short idHotel;   // sau int, depinde de design-ul tău
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Short idHotel;
 
     private String numeHotel;
     private String adresaHotel;

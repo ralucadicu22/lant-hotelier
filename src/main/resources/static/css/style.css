@@ -9457,30 +9457,70 @@ background-color: #ff3b3b;
         margin-bottom: 20px;
     }
 }
-/* Stil pentru meniul principal */
+
 #fh5co-primary-menu {
-    display: flex; /* Afișare pe orizontală */
-    justify-content: flex-end; /* Aliniere la dreapta */
-    list-style: none; /* Elimină punctele de la listă */
-    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
     padding: 0;
 }
 
-/* Stil pentru fiecare element din meniu */
+
 #fh5co-primary-menu li {
-    margin: 0 15px; /* Spațiu între elemente */
+    margin: 0 15px;
 }
 
-/* Linkurile din meniu */
+
 #fh5co-primary-menu li a {
-    text-decoration: none; /* Elimină sublinierea */
-    color: white; /* Culoarea textului */
+    text-decoration: none;
+    color: white;
     font-size: 16px;
     padding: 5px 10px;
-    transition: color 0.3s ease; /* Efect de hover */
+    transition: color 0.3s ease;
 }
 
-/* Stil pentru hover */
+
 #fh5co-primary-menu li a:hover {
-    color: #FF5722; /* Schimbă culoarea la hover */
+    color: #FF5722;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.services:hover {
+    transform: scale(1.05);
+}
+
+.services span {
+    display: block;
+    font-size: 40px;
+    color: #ff5722;
+    margin-bottom: 10px;
+}
+
+.services h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.services p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
 }
