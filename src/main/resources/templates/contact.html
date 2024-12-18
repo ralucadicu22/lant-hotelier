@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Contact us page" />
 	<meta name="keywords" content="contact, hotels, responsive design" />
-	<meta name="author" content="FREEHTML5.CO" />
+
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link th:href="@{/favicon.ico}" rel="shortcut icon">
@@ -44,24 +44,19 @@
 						<h1 id="fh5co-logo"><a th:href="@{/}">Luxe</a></h1>
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li><a th:href="@{/}">Home</a></li>
+								<li><a class="active" th:href="@{/}">Home</a></li>
 								<li>
 									<a th:href="@{/hotel}" class="fh5co-sub-ddown">Hotel</a>
 									<ul class="fh5co-sub-menu">
-										<li><a href="#">Luxe Hotel</a></li>
-										<li><a href="#">Deluxe Hotel</a></li>
-										<li>
-											<a href="#" class="fh5co-sub-ddown">King Hotel</a>
-											<ul class="fh5co-sub-menu">
-												<li><a href="#">Option 1</a></li>
-												<li><a href="#">Option 2</a></li>
-											</ul>
+										<li th:if="${hotels != null and hotels.size() > 0}" th:each="hotel : ${hotels}">
+											<a th:href="@{/hotel/{id}(id=${hotel.idHotel})}" th:text="${hotel.numeHotel}">Hotel Name</a>
 										</li>
-										<li><a href="#">Five Star Hotel</a></li>
+										<li th:if="${hotels == null or hotels.size() == 0}">
+											<a href="#">No Hotels Available</a>
+										</li>
 									</ul>
 								</li>
 								<li><a th:href="@{/services}">Services</a></li>
-								<li><a th:href="@{/blog}">Blog</a></li>
 								<li><a class="active" th:href="@{/contact}">Contact</a></li>
 							</ul>
 						</nav>
@@ -70,14 +65,13 @@
 			</header>
 		</div>
 		<!-- end:fh5co-header -->
-		<div class="fh5co-parallax" th:style="'background-image: url(' + @{/images/slider1.jpg} + ');'" data-stellar-background-ratio="0.5">
+		<div class="fh5co-parallax" th:style="'background-image: url(' + @{/images/dubai.jpg} + ');'" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center fh5co-table">
 						<div class="fh5co-intro fh5co-table-cell">
 							<h1 class="text-center">Contact Us</h1>
-							<p>Get in touch with us at <a href="http://freehtml5.co">FreeHTML5.co</a></p>
 						</div>
 					</div>
 				</div>
@@ -85,63 +79,37 @@
 		</div>
 
 		<div id="fh5co-contact-section">
-			<div class="row">
-				<div class="col-md-6">
-					<div id="map" class="fh5co-map"></div>
-				</div>
-				<div class="col-md-6">
-					<div class="col-md-12">
-						<h3>Our Address</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-						<ul class="contact-info">
-							<li><i class="ti-map"></i>198 West 21th Street, Suite 721 New York NY 10016</li>
-							<li><i class="ti-mobile"></i>+ 1235 2355 98</li>
-							<li><i class="ti-envelope"></i><a href="#">info@yoursite.com</a></li>
-							<li><i class="ti-home"></i><a href="#">www.yoursite.com</a></li>
-						</ul>
-					</div>
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Name">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Email">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<input type="submit" value="Send Message" class="btn btn-primary">
-								</div>
-							</div>
+			<div class="container">
+				<div class="row">
+					<!-- Harta -->
+					<div class="col-md-6">
+						<div class="map-responsive">
+							<iframe
+									src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD0of361f8_ChgCZ6kvZn3hEeTXFQ9fXMM&q=Bulevardul+Dimitrie+Pompeiu+126,+Bucuresti"
+									height="350"
+									style="border:0;"
+									allowfullscreen=""
+									loading="lazy"
+									referrerpolicy="no-referrer-when-downgrade">
+							</iframe>
 						</div>
+					</div>
+					<!-- Our Address -->
+					<div class="col-md-6">
+						<h3>Our Address</h3>
+						<p>Experience exceptional hospitality and comfort with Best Hotels, where every stay is crafted to perfection.</p>
+						<ul class="contact-info">
+							<li><i class="ti-map"></i>Bd. Dimitrie Pompeiu, nr. 126</li>
+							<li><i class="ti-mobile"></i>+40732591440</li>
+							<li><i class="ti-envelope"></i><a href="#">besthotels@yahoo.com</a></li>
+							<li><i class="ti-home"></i><a href="#">www.besthotels.com</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<footer id="footer" class="fh5co-bg-color">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="copyright">
-							<p><small>&copy; 2016 Free HTML5 Template. <br> Designed by <a href="http://freehtml5.co" target="_blank">FreeHTML5.co</a>.</small></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
 	</div>
-</div>
-
 <!-- Javascripts -->
 <script th:src="@{/js/jquery-2.1.4.min.js}"></script>
 <script th:src="@{/js/hoverIntent.js}"></script>
@@ -155,5 +123,6 @@
 <script th:src="@{/js/selectFx.js}"></script>
 <script th:src="@{/js/jquery.flexslider-min.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
+</div>
 </body>
 </html>

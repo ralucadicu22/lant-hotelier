@@ -9415,3 +9415,72 @@ background-color: #ff3b3b;
 .booking-section .btn:hover {
     background-color: #555;
 }
+#fh5co-contact-section {
+    padding: 50px 0;
+}
+
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info li i {
+    color: #ff6600;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    #fh5co-contact-section .row > div {
+        margin-bottom: 20px;
+    }
+}
+/* Stil pentru meniul principal */
+#fh5co-primary-menu {
+    display: flex; /* Afișare pe orizontală */
+    justify-content: flex-end; /* Aliniere la dreapta */
+    list-style: none; /* Elimină punctele de la listă */
+    margin: 0;
+    padding: 0;
+}
+
+/* Stil pentru fiecare element din meniu */
+#fh5co-primary-menu li {
+    margin: 0 15px; /* Spațiu între elemente */
+}
+
+/* Linkurile din meniu */
+#fh5co-primary-menu li a {
+    text-decoration: none; /* Elimină sublinierea */
+    color: white; /* Culoarea textului */
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: color 0.3s ease; /* Efect de hover */
+}
+
+/* Stil pentru hover */
+#fh5co-primary-menu li a:hover {
+    color: #FF5722; /* Schimbă culoarea la hover */
+}

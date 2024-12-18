@@ -1,5 +1,6 @@
 package com.example.lant_hotelier.controllers;
 
+
 import com.example.lant_hotelier.entities.Hotel;
 import com.example.lant_hotelier.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
-public class HotelController {
-
+public class ContactController {
     @Autowired
     private HotelService hotelService;
+    @GetMapping("/contact")
+    public String showContactPage(Model model) {
 
-    @GetMapping("/hotel")
-    public String showHotels(Model model) {
         List<Hotel> hotels = hotelService.getAllHotels();
         model.addAttribute("hotels", hotels);
-        return "hotel";
+        System.out.println(hotels);
+        return "contact";
     }
 }

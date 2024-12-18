@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Map;
+
 @Controller
 public class HomeController {
 
@@ -16,11 +18,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String showHomePage(Model model) {
-        List<Hotel> hotels = hotelService.getAllHotels();
-        model.addAttribute("hotels", hotels);
-        System.out.println(hotels);
+        List<Hotel> hotels = hotelService.getAllHotels(); // Preia hotelurile
+        model.addAttribute("hotels", hotels); // Adaugă lista în model
         return "index";
-
     }
-
 }
