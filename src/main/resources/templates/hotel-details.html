@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hotel Details</title>
+</head>
+<body>
+<h1 th:text="${hotel.numeHotel}"></h1>
+<img th:src="@{'/images/' + ${hotel.image}}" alt="Hotel Image">
+<p><strong>Address:</strong> <span th:text="${hotel.adresaHotel}"></span></p>
+<p><strong>Phone:</strong> <span th:text="${hotel.telefonHotel}"></span></p>
+<p><strong>Reviews:</strong> <span th:text="${hotel.recenziiHotel}"></span></p>
+
+<h2>Rooms</h2>
+<ul>
+  <li th:each="camera : ${camere}">
+    <p th:text="'Price: ' + ${camera.pretNoapteCamera} + ' Capacity: ' + ${camera.capacitateCamera}"></p>
+  </li>
+</ul>
+
+<h2>Facilities</h2>
+<ul>
+  <li th:each="facilitate : ${facilitati}">
+    <p th:text="${facilitate.numeFacilitate} + ' - ' + ${facilitate.descriereFacilitate}"></p>
+  </li>
+</ul>
+</body>
+</html>

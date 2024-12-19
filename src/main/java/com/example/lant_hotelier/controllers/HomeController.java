@@ -18,8 +18,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String showHomePage(Model model) {
-        List<Hotel> hotels = hotelService.getAllHotels(); // Preia hotelurile
-        model.addAttribute("hotels", hotels); // Adaugă lista în model
+        List<Hotel> hotels = hotelService.getAllHotels();
+        model.addAttribute("hotels", hotels);
         return "index";
     }
 }

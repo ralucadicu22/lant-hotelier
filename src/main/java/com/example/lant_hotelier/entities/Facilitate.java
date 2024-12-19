@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -66,5 +67,16 @@ public class Facilitate {
     @Override
     public int hashCode() {
         return Objects.hash(numeFacilitate);
+    }
+    @OneToMany(mappedBy = "facilitate")
+    private List<Ofera> oferte;
+
+    // Getteri și setteri
+    public List<Ofera> getOferte() {
+        return oferte;
+    }
+
+    public void setOferte(List<Ofera> oferte) {
+        this.oferte = oferte;
     }
 }

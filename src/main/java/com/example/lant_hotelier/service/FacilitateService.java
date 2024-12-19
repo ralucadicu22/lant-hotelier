@@ -19,4 +19,7 @@ public class FacilitateService {
                 .distinct()
                 .collect(Collectors.toList());
     }
+    public List<Facilitate> getFacilitatiByHotelId(Short idHotel) {
+        return facilitateRepository.findByHotelId(idHotel);
+    }
 }

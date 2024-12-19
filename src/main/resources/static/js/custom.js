@@ -232,5 +232,9 @@ $(function(){
    });
 
 });
+function redirectToDetails(hotelId) {
+    const url = `/hotel/details/${hotelId}`;
+    window.location.href = url;
+}
 	
 	

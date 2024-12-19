@@ -2,6 +2,7 @@ package com.example.lant_hotelier.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -73,6 +74,17 @@ public class Hotel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+    @OneToMany(mappedBy = "hotel")
+    private List<Ofera> oferte;
+
+    // Getteri și setteri
+    public List<Ofera> getOferte() {
+        return oferte;
+    }
+
+    public void setOferte(List<Ofera> oferte) {
+        this.oferte = oferte;
     }
 }
 

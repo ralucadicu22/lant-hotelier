@@ -7,40 +7,32 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "tblCamere")
 public class Camera {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCamera;
+    private Short idCamera;
 
-    @ManyToOne
-    @JoinColumn(name = "id_Hotel", nullable = false)
-    private Hotel hotel;
+    @Column(name = "id_Hotel")
+    private Short idHotel;
 
     private BigDecimal pretNoapteCamera;
-    private int capacitateCamera;
+    private Short capacitateCamera;
     private String disponibilitateCamera;
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public Long getIdCamera() {
+    public Short getIdCamera() {
         return idCamera;
     }
 
-    public void setIdCamera(Long idCamera) {
+    public void setIdCamera(Short idCamera) {
         this.idCamera = idCamera;
     }
 
-    public int getCapacitateCamera() {
-        return capacitateCamera;
+    public Short getIdHotel() {
+        return idHotel;
     }
 
-    public void setCapacitateCamera(int capacitateCamera) {
-        this.capacitateCamera = capacitateCamera;
+    public void setIdHotel(Short idHotel) {
+        this.idHotel = idHotel;
     }
 
     public BigDecimal getPretNoapteCamera() {
@@ -51,6 +43,14 @@ public class Camera {
         this.pretNoapteCamera = pretNoapteCamera;
     }
 
+    public Short getCapacitateCamera() {
+        return capacitateCamera;
+    }
+
+    public void setCapacitateCamera(Short capacitateCamera) {
+        this.capacitateCamera = capacitateCamera;
+    }
+
     public String getDisponibilitateCamera() {
         return disponibilitateCamera;
     }
@@ -59,4 +59,3 @@ public class Camera {
         this.disponibilitateCamera = disponibilitateCamera;
     }
 }
-
