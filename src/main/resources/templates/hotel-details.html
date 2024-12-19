@@ -2,26 +2,124 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Hotel Details</title>
+  <!-- CSS Owl Carousel -->
+  <link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet">
+  <link th:href="@{/css/owl.theme.default.min.css}" rel="stylesheet">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+  <style>
+    .owl-carousel .item img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-<h1 th:text="${hotel.numeHotel}"></h1>
-<img th:src="@{'/images/' + ${hotel.image}}" alt="Hotel Image">
-<p><strong>Address:</strong> <span th:text="${hotel.adresaHotel}"></span></p>
-<p><strong>Phone:</strong> <span th:text="${hotel.telefonHotel}"></span></p>
-<p><strong>Reviews:</strong> <span th:text="${hotel.recenziiHotel}"></span></p>
 
-<h2>Rooms</h2>
-<ul>
-  <li th:each="camera : ${camere}">
-    <p th:text="'Price: ' + ${camera.pretNoapteCamera} + ' Capacity: ' + ${camera.capacitateCamera}"></p>
-  </li>
-</ul>
+<div class="text-center">
+  <h1 th:text="${hotel.numeHotel}"></h1>
+</div>
 
-<h2>Facilities</h2>
-<ul>
-  <li th:each="facilitate : ${facilitati}">
-    <p th:text="${facilitate.numeFacilitate} + ' - ' + ${facilitate.descriereFacilitate}"></p>
-  </li>
-</ul>
+<div class="d-flex justify-content-center flex-wrap gap-3">
+  <!-- Iterăm prin imaginile hotelului -->
+  <div th:each="image : ${images}" class="p-2">
+    <img th:src="@{'/images/' + ${image.imageUrl}}" class="img-thumbnail" alt="Hotel Image" style="max-width: 400px;">
+  </div>
+</div>
+
+<!-- Informații hotel -->
+<p class="text-center"><strong>Address:</strong> <span th:text="${hotel.adresaHotel}"></span></p>
+<p class="text-center"><strong>Phone:</strong> <span th:text="${hotel.telefonHotel}"></span></p>
+<p class="text-center"><strong>Reviews:</strong> <span id="average-rating" th:text="${hotel.recenziiHotel}"></span></p>
+
+<!-- Secțiunea Rooms -->
+<div class="container text-center mt-5">
+  <h2>Rooms</h2>
+  <ul class="list-unstyled">
+    <li th:each="camera : ${camere}" class="mb-3">
+      <p>
+        <strong>Capacity:</strong> <span th:text="${camera.capacitateCamera}"></span>
+        <button class="btn btn-primary btn-sm" onclick="showPrice(this)" th:data-price="${camera.pretNoapteCamera}">
+          Show Price
+        </button>
+        <span class="price ms-2" style="display: none;" th:text="'Price: ' + ${camera.pretNoapteCamera}"></span>
+      </p>
+    </li>
+  </ul>
+</div>
+
+<div class="container text-center mt-5">
+  <h2>Facilities</h2>
+  <ul class="list-unstyled">
+    <li th:each="facilitate : ${facilitati}" class="mb-2">
+      <p th:text="${facilitate.numeFacilitate} + ' - ' + ${facilitate.descriereFacilitate}"></p>
+    </li>
+  </ul>
+</div>
+
+<div class="container text-center mt-5">
+  <h3>Leave a Review</h3>
+  <form id="reviewForm">
+    <input type="hidden" id="idHotel" th:value="${hotel.idHotel}">
+    <label for="rating">Rating (1 to 10):</label>
+    <input type="number" id="rating" name="rating" min="1" max="10" step="0.1" required>
+    <button type="button" class="btn btn-primary" onclick="submitReview()">Submit Review</button>
+  </form>
+</div>
+->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script>
+  $(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+      items: 1,
+      loop: true,
+      margin: 10,
+      nav: true,
+      dots: true,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      navText: ["<", ">"]
+    });
+  });
+
+  function showPrice(button) {
+    const priceElement = button.nextElementSibling;
+    priceElement.style.display = 'inline';
+    button.style.display = 'none';
+  }
+</script>
+<script>
+  async function submitReview() {
+   const idHotel = document.getElementById("idHotel").value;
+   const rating = parseFloat(document.getElementById("rating").value);
+
+   if (rating < 1 || rating > 10) {
+     return;
+   }
+
+   try {
+     const response = await fetch('/reviews/add', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/x-www-form-urlencoded'
+       },
+       body: `idHotel=${idHotel}&rating=${rating}`
+     });
+
+     if (response.ok) {
+       const updatedRatingResponse = await fetch(`/reviews/average?idHotel=${idHotel}`);
+
+       if (updatedRatingResponse.ok) {
+         const updatedRating = await updatedRatingResponse.json();
+         document.getElementById("reviews").textContent = updatedRating.toFixed(1);
+       }
+     }
+   } catch (error) {
+     console.error("Error submitting review:", error);
+   }
+ }
+</script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

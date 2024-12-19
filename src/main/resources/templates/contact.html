@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Luxe &mdash; Contact Page</title>
+	<title> Contact Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Contact us page" />
 	<meta name="keywords" content="contact, hotels, responsive design" />
@@ -41,7 +41,6 @@
 				<div class="container">
 					<div class="nav-header">
 						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-						<h1 id="fh5co-logo"><a th:href="@{/}">Luxe</a></h1>
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
 								<li><a class="active" th:href="@{/}">Home</a></li>
@@ -49,7 +48,7 @@
 									<a th:href="@{/hotel}" class="fh5co-sub-ddown">Hotel</a>
 									<ul class="fh5co-sub-menu">
 										<li th:if="${hotels != null and hotels.size() > 0}" th:each="hotel : ${hotels}">
-											<a th:href="@{/hotel/{id}(id=${hotel.idHotel})}" th:text="${hotel.numeHotel}">Hotel Name</a>
+											<a th:href="@{/hotel/details/{id}(id=${hotel.idHotel})}" th:text="${hotel.numeHotel}"></a>
 										</li>
 										<li th:if="${hotels == null or hotels.size() == 0}">
 											<a href="#">No Hotels Available</a>
