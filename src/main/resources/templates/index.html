@@ -116,30 +116,32 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-6">
 						<div class="booking-field">
-							<select class="form-control" name="hotel">
-								<option value="">Select Hotel</option>
-								<option th:each="hotel : ${hotels}" th:value="${hotel.idHotel}" th:text="${hotel.numeHotel}">
-									Hotel Name
-								</option>
+							<select id="hotel" class="form-control" required>
+								<option value="" disabled selected>Select Hotel</option>
+								<option th:each="hotel : ${hotels}" th:value="${hotel.idHotel}" th:text="${hotel.numeHotel}"></option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="booking-field">
-							<input type="date" class="form-control" placeholder="Check In">
+							<input id="checkIn" type="date" class="form-control" placeholder="Check In" required>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="booking-field">
-							<input type="date" class="form-control" placeholder="Check Out">
+							<input id="checkOut" type="date" class="form-control" placeholder="Check Out" required>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="booking-field">
-							<button class="btn btn-primary btn-block">Check Availability</button>
+							<button id="checkAvailabilityBtn" class="btn btn-primary btn-block" onclick="checkAvailability()">Check Availability</button>
 						</div>
 					</div>
 				</div>
+			</div>
+			<!-- Rezultatele vor fi afișate aici -->
+			<div id="availability-result" class="text-center mt-4" style="display: none;">
+				<p id="availability-message"></p>
 			</div>
 		</div>
 	</section>
@@ -225,7 +227,7 @@
 <script th:src="@{/js/owl.carousel.min.js}"></script>
 <script>
 	$(document).ready(function() {
-        // Owl Carousel pentru Hero Slider
+
         $(".hero-carousel").owlCarousel({
             loop: true,
             margin: 0,
@@ -246,7 +248,38 @@
             items: 1
         });
     });
+		async function checkAvailability() {
+    const hotelId = document.getElementById("hotel").value;
+    const checkIn = document.getElementById("checkIn").value;
+    const checkOut = document.getElementById("checkOut").value;
+
+    if (!hotelId || !checkIn || !checkOut) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+try {
+    const response = await fetch(`/availability?hotelId=${hotelId}&checkIn=${checkIn}&checkOut=${checkOut}`);
+    console.log("Response status:", response.status);
+    const data = await response.json();
+    console.log("Response data:", data);
+
+    if (response.ok) {
+        if (data.length > 0) {
+            alert("Camere disponibile!");
+        } else {
+            alert("Nu există camere disponibile.");
+        }
+    } else {
+        alert("A apărut o eroare în timpul verificării disponibilității.");
+    }
+} catch (error) {
+    console.error("Error:", error);
+    alert("A apărut o eroare în timpul procesării cererii.");
+}
+}
 </script>
 
+</div>
 </body>
 </html>
