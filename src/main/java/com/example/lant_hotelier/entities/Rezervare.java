@@ -27,7 +27,16 @@ public class Rezervare {
     @Column(name = "check_outRezervare")
     private LocalDate checkOutRezervare;
 
+    @Transient
+    private double pretTotal;
 
+    public double getPretTotal() {
+        return pretTotal;
+    }
+
+    public void setPretTotal(double pretTotal) {
+        this.pretTotal = pretTotal;
+    }
     public Short getIdClienti() {
         return idClienti;
     }

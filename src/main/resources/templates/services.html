@@ -82,15 +82,13 @@
 		<div id="fh5co-services-section">
 			<div class="container">
 				<div class="row">
-					<!-- Iterare prin lista de facilități din modelul Thymeleaf -->
 					<div class="col-md-4" th:each="facilitate : ${facilitati}">
 						<div class="services">
-							<span><i class="ti-check"></i></span> <!-- Iconă generică -->
+							<span><i class="ti-check"></i></span>
 							<div class="desc">
-								<!-- Afișează numele facilității -->
 								<h3 th:text="${facilitate.numeFacilitate}">Facility Name</h3>
-								<!-- Afișează descrierea facilității -->
-								<p th:text="${facilitate.descriereFacilitate}">Facility Description</p>
+
+
 							</div>
 						</div>
 					</div>

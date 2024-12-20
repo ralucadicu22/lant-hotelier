@@ -9740,3 +9740,21 @@ max-width: 2000px;
 .owl-carousel .item img {
     border-radius: 10px;
 }
+.booking-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.booking-container form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}

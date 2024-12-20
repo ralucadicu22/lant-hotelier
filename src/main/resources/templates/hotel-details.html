@@ -40,7 +40,7 @@
       <p>
         <strong>Capacity:</strong> <span th:text="${camera.capacitateCamera}"></span>
         <button class="btn btn-primary btn-sm" onclick="showPrice(this)" th:data-price="${camera.pretNoapteCamera}">
-          Show Price
+          Show Price per night
         </button>
         <span class="price ms-2" style="display: none;" th:text="'Price: ' + ${camera.pretNoapteCamera}"></span>
       </p>
@@ -66,7 +66,61 @@
     <button type="button" class="btn btn-primary" onclick="submitReview()">Submit Review</button>
   </form>
 </div>
-->
+<div class="container text-center mt-5">
+  <h2>Book Your Stay</h2>
+  <form id="bookingForm" action="/book" method="POST">
+    <input type="hidden" id="id" name="id" th:value="${hotel.idHotel}">
+
+
+    <!-- Select Room -->
+    <label for="idCamera">Select Room:</label>
+    <select id="idCamera" name="idCamera" class="form-select mb-3" required>
+      <option value="">Choose a room</option>
+      <option th:each="camera : ${camere}" th:value="${camera.idCamera}" th:text="'Room ' + ${camera.idCamera} + ' - Capacity: ' + ${camera.capacitateCamera}">
+      </option>
+    </select>
+
+    <!-- Check-in Date -->
+    <label for="checkInDate">Check-in Date:</label>
+    <input type="date" id="checkInDate" name="checkInDate" class="form-control mb-3" required>
+
+    <!-- Check-out Date -->
+    <label for="checkOutDate">Check-out Date:</label>
+    <input type="date" id="checkOutDate" name="checkOutDate" class="form-control mb-3" required>
+
+    <!-- Client Details -->
+    <h3>Client Details</h3>
+    <label for="numeClient">First Name:</label>
+    <input type="text" id="numeClient" name="numeClient" class="form-control mb-3" required>
+    <label for="prenumeClient">Last Name:</label>
+    <input type="text" id="prenumeClient" name="prenumeClient" class="form-control mb-3" required>
+    <label for="telefonClienti">Phone:</label>
+    <input type="text" id="telefonClienti" name="telefonClienti" class="form-control mb-3" required>
+    <label for="emailClienti">Email:</label>
+    <input type="email" id="emailClienti" name="emailClienti" class="form-control mb-3" required>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success">Book Now</button>
+  </form>
+</div>
+<div class="container mt-5">
+  <h2>Your Bookings</h2>
+  <div>
+    <ul>
+      <li th:each="rezervare : ${rezervari}">
+        Reservation ID: <span th:text="${rezervare.idRezervare}"></span> -
+        Room: <span th:text="${rezervare.idCamera}"></span> -
+        Check-in: <span th:text="${rezervare.checkInRezervare}"></span> -
+        Check-out: <span th:text="${rezervare.checkOutRezervare}"></span>
+        <strong>Total Price:</strong>
+        <span th:text="${rezervare.pretTotal} + ' RON'"></span>
+        <button class="btn btn-danger btn-sm"
+                onclick="cancelReservation(${rezervare.idRezervare})">Cancel</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/owl.carousel.min.js}"></script>
 <script>
@@ -113,12 +167,30 @@
        if (updatedRatingResponse.ok) {
          const updatedRating = await updatedRatingResponse.json();
          document.getElementById("reviews").textContent = updatedRating.toFixed(1);
+         location.reload();
        }
      }
    } catch (error) {
      console.error("Error submitting review:", error);
    }
  }
+   async function cancelReservation(reservationId) {
+        try {
+            const response = await fetch(`/book/cancel?reservationId=${reservationId}`, {
+                method: "DELETE"
+            });
+
+            if (response.ok) {
+                alert("Reservation canceled successfully!");
+                location.reload();
+            } else {
+                alert("Failed to cancel the reservation.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred while canceling the reservation.");
+        }
+    }
 </script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
